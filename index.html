@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../CSS/index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <script src="../Jquery/jquery-3.6.1.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-xxl-12 col-xl-12 col-menu">
+                <div class="menu">
+                    <ul>
+                        <div class="menu-btn active home" data-category="*">
+                            <i class="fa-solid fa-house"></i>
+                        </div>
+                        <li class="menu-btn" data-category="4">
+                            Shirt
+                        </li>
+                        <li class="menu-btn" data-category="3">
+                            Jecket
+                        </li>
+                        <li class="menu-btn" data-category="2">
+                            Shoes
+                        </li>
+                        <li class="menu-btn" data-category="1">
+                            Headset
+                        </li>
+                        <div class="bar">
+                            <i class="fa-solid fa-bars nav-br"></i>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-xxl-12 col-xl-12">
+                <div class="nav-menu">
+                    <ul>
+                        <li class="menu-btn" data-category="4">
+                            Shirt
+                        </li>
+                        <li class="menu-btn" data-category="3">
+                            Jecket
+                        </li>
+                        <li class="menu-btn" data-category="2">
+                            Shoes
+                        </li>
+                        <li class="menu-btn" data-category="1">
+                            Headset
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container pro">
+        <div class="Main-product">
+            <div class="row main">
+                <!-- <div class="col-xxl-3 col-xl-3 product">
+                    <img src="../IMG/hat1.jpg" alt="">
+                    <div class="border"></div>
+                    <p>5$</p>
+                </div>
+                <div class="col-xxl-3 col-xl-3 product">
+                    <img src="../IMG/hat2.jpg" alt="">
+                    <div class="border"></div>
+                    <p>5$</p>
+                </div>
+                <div class="col-xxl-3 col-xl-3 product">
+                    <img src="../IMG/hat3.jpg" alt="">
+                    <div class="border"></div>
+                    <p>5$</p>
+                </div>
+                <div class="col-xxl-3 col-xl-3 product">
+                    <img src="../IMG/hat4.jpg" alt="">
+                    <div class="border"></div>
+                    <p>5$</p>
+                </div> -->
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    $(document).ready(function(){
+        const item =[
+            {
+                "category":"1",
+                "img":"../IMG/head1.webp",
+                "price":"23$"
+            },
+            {
+                "category":"4",
+                "img":"../IMG/shirt3.webp",
+                "price":"8$"
+            },
+            {
+                "category":"2",
+                "img":"../IMG/shoe6.jpeg",
+                "price":"65$"
+            },
+            {
+                "category":"1",
+                "img":"../IMG/head3.jpeg",
+                "price":"43$"
+            },
+            {
+                "category":"4",
+                "img":"../IMG/shirt2.jpeg",
+                "price":"15$"
+            },
+            {
+                "category":"1",
+                "img":"../IMG/head1.webp",
+                "price":"25$"
+            },
+            {
+                "category":"2",
+                "img":"../IMG/shoe3.jpeg",
+                "price":"85$"
+            },
+            {
+                "category":"3",
+                "img":"../IMG/jeck1.webp",
+                "price":"35$"
+            },
+            {
+                "category":"2",
+                "img":"../IMG/shoe2.jpeg",
+                "price":"45$"
+            },
+            {
+                "category":"3",
+                "img":"../IMG/jeck2.webp",
+                "price":"25$"
+            },
+            {
+                "category":"3",
+                "img":"../IMG/jeck3.jpeg",
+                "price":"33$"
+            },
+            {
+                "category":"4",
+                "img":"../IMG/shirt4.webp",
+                "price":"9$"
+            },
+            {
+                "category":"3",
+                "img":"../IMG/jeck4.jpeg",
+                "price":"22$"
+            },
+            {
+                "category":"2",
+                "img":"../IMG/shoe4.jpeg",
+                "price":"25$"
+            },
+            {
+                "category":"4",
+                "img":"../IMG/shirt1.jpeg",
+                "price":"10$"
+            },
+            {
+                "category":"1",
+                "img":"../IMG/head2.jpeg",
+                "price":"12$"
+            },
+        ]
+        let product="";
+        for(i in item){
+            product+=`<div class="col-xxl-3 col-xl-3 product">
+                    <img src="${item[i].img}" alt="">
+                    <div class="border"></div>
+                    <p>${item[i].price}</p>
+                </div>`
+        }
+        $('.main').html(product);
+
+        function renderProducts(category) {
+            let filteredProducts = item.filter(product => product.category === category || category === '*');
+            let productsHTML = '';
+            filteredProducts.forEach(product => {
+                productsHTML += `
+                    <div class="col-xxl-3 col-xl-3 product">
+                        <img src="${product.img}" alt="">
+                        <div class="border"></div>
+                        <p>${product.price}</p>
+                    </div>
+                `;
+            });
+            $('.main').html(productsHTML);
+        }
+
+        const allbtn=$('.menu-btn');
+        allbtn.click(function(){
+            allbtn.removeClass('active');
+            $(this).addClass('active');
+            const category = $(this).data('category').toString();
+            renderProducts(category);
+        })
+        $('.nav-br').click(function(){
+            $('.nav-menu').slideToggle();
+        }) 
+
+    })
+</script>
+</html>
